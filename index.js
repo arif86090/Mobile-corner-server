@@ -23,7 +23,7 @@ function verifyJwt(req,res,next){
       if(err){
         return res.status(403).send({message:'Forbindd access'});
       }
-      console.log('decoded',decoded);
+      console.log('decodeed',decoded);
       req.decoded=decoded;
       next();
     })
