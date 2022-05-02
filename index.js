@@ -98,10 +98,24 @@ async function run() {
       res.send(users)
       }
       else{
-        res.status(403).send({message:'forbidden acccess'})
+        res.status(403).send({message:'forbidden accces'})
       }
-    })
+    });
 
+    // add.put('/deliverd',async (req,res)=>{
+    //   const id=req.body.id;
+    //   const exist_qty=parseInt(res.body.exist_qty);
+    //   const filter={_id:ObjectId(id)};
+    //   const opation = {upsert:true};
+    //   const updateDoc ={
+    //     $set:{
+    //       quantity:exist_qty -1,
+    //     },
+    //   };
+    //   const result = await userCollection.updateOne(filter,updateDoc,opation);
+    //   res.send(result);
+
+    // })
 
 
 
