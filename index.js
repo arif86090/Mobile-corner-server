@@ -102,22 +102,40 @@ async function run() {
       }
     });
 
-    // add.put('/deliverd',async (req,res)=>{
-    //   const id=req.body.id;
-    //   const exist_qty=parseInt(res.body.exist_qty);
-    //   const filter={_id:ObjectId(id)};
-    //   const opation = {upsert:true};
-    //   const updateDoc ={
-    //     $set:{
-    //       quantity:exist_qty -1,
-    //     },
-    //   };
-    //   const result = await userCollection.updateOne(filter,updateDoc,opation);
-    //   res.send(result);
+    app.put('/deliverd',async (req,res)=>{
+      console.log(req.body);
+      const id=req.body.id;
+      const exist_qty=parseInt(req.body.exist_qty);
+      const filter={_id:ObjectId(id)};
+      const opation = {upsert:true};
+      const updateDoc ={
+        $set:{
+          quantity:exist_qty -1,
+        },
+      };
+      const result = await userCollection.updateOne(filter,updateDoc,opation);
+      res.send(result);
 
-    // })
+    })
+    
+    app.put('/updateQunty',async (req,res)=>{
+      console.log(req.body);
+      const id=req.body.id;
+      const quantity=parseInt(req.body.quantity)
+      const exist_qty=parseInt(req.body.exist_qty);
+      console.log(quantity);
+      console.log( exist_qty);
+      const filter={_id:ObjectId(id)};
+      const opation = {upsert:true};
+      const updateDoc ={
+        $set:{
+          quantity:quantity + exist_qty ,
+        },
+      };
+      const result = await userCollection.updateOne(filter,updateDoc,opation);
+      res.send(result);
 
-
+    })
 
   } finally {
     // await client.close();
@@ -125,7 +143,7 @@ async function run() {
 }
 run().catch(console.dir);
 app.get('/',(req,res) =>{
-  res.send('say some thing')
+  res.send('Node runing!')
 })
 
 app.listen(port,() =>{
